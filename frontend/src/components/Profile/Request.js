@@ -1,0 +1,159 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { Button, Card, Form, Table } from "react-bootstrap";
+
+export default function Request(props) {
+  const [leaveDetails, setLeaveDetails] = useState([]);
+  const [previewStatus, setPreviewStatus] = useState(false);
+  const [selected, setSelected] = useState(-1);
+  useEffect(() => {
+    getLeave();
+  }, []);
+  const getLeave = async () => {
+    const response = await axios.get(`http://localhost:5000/leaveRequest/get`);
+    setLeaveDetails(response.data);
+  };
+  return (
+    <Card style={{ margin: "5vw" }}>
+      <Card.Header>Attendance Requests</Card.Header>
+      {previewStatus ? (
+        <Card.Body>
+          <Card.Text>Attendance Request</Card.Text>
+          <Form>
+            {/* <Form.Label>EID</Form.Label> */}
+            <Form.Label>Name:</Form.Label>
+            <Form.Control value={leaveDetails[selected].userName} readOnly />
+            <Form.Label>From Date:</Form.Label>
+            <Form.Control value={leaveDetails[selected].from} readOnly />
+            <Form.Label>To Date:</Form.Label>
+            <Form.Control value={leaveDetails[selected].to} readOnly />
+            <Form.Label>Leave Type:</Form.Label>
+            <Form.Control value={leaveDetails[selected].leaveType} readOnly />
+            <Button onClick={() => setPreviewStatus(!previewStatus)}>
+              Hold
+            </Button>
+            <Button>Approve</Button>
+            <Button>Decline</Button>
+          </Form>
+        </Card.Body>
+      ) : (
+        <Card.Body>
+          <Table bordered>
+            <thead>
+              <tr>
+                <th>NO.</th>
+                <th>Name</th>
+                <th>FROM</th>
+                <th>TO</th>
+                <th>LEAVE TYPE</th>
+                <th>FULL/HALF DAY</th>
+                <th>PREVIEW</th>
+              </tr>
+            </thead>
+            <tbody>
+              {leaveDetails.map((item, index) => {
+                return (
+                  <tr>
+                    <td>{index + 1}</td>
+                    <td>{item.userName}</td>
+                    <td>{item.from}</td>
+                    <td>{item.to}</td>
+                    <td>{item.leaveType}</td>
+                    <td>{item.duration}</td>
+                    <td>
+                      <Button
+                        onClick={() => {
+                          setPreviewStatus(!previewStatus);
+                          setSelected(index);
+                        }}
+                      >
+                        PREVIEW
+                      </Button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </Table>
+        </Card.Body>
+      )}
+    </Card>
+    // <section id="request_content" style={{ display: "contents" }}>
+    //   <div className="edit_container">
+    //     <div className="edit_card">
+    //       <div className="edit_info">
+    //         <div
+    //           className="profile_title"
+    //           style={{
+    //             fontSize: "large",
+    //             paddingLeft: "20px",
+    //             fontWeight: "1000",
+    //           }}
+    //         >
+    //           Attendence Requests
+    //         </div>
+    //       </div>
+    //       <div className="edit_forms">
+    //         <div className="first_row_bank_appove">
+    //           <table className="styledtable">
+    //             <thead>
+    //               <tr>
+    //                 <th>NO.</th>
+    //                 <th>Name</th>
+    //                 <th>FROM</th>
+    //                 <th>TO</th>
+    //                 <th>LEAVE TYPE</th>
+    //                 <th>FULL/HALF DAY</th>
+    //                 <th>PREVIEW</th>
+    //               </tr>
+    //             </thead>
+    //             <tbody>
+    //               <tr>
+    //                 <td>1</td>
+    //                 <td>Mr.Durga</td>
+    //                 <td>01/12/2021</td>
+    //                 <td>03/12/2021</td>
+    //                 <td>Floating Leave</td>
+    //                 <td>Full</td>
+    //                 <td>
+    //                   <button className="preview_button" onclick="open_model()">
+    //                     Preview
+    //                   </button>
+    //                 </td>
+    //               </tr>
+    //               <tr>
+    //                 <td>2</td>
+    //                 <td>Mr.Durga</td>
+    //                 <td>01/12/2021</td>
+    //                 <td>03/12/2021</td>
+    //                 <td>Floating Leave</td>
+    //                 <td>Full</td>
+    //                 <td>
+    //                   <button className="preview_button" onclick="open_model()">
+    //                     Preview
+    //                   </button>
+    //                 </td>
+    //               </tr>
+
+    //               <tr>
+    //                 <td>3</td>
+    //                 <td>Mr.Durga</td>
+    //                 <td>01/12/2021</td>
+    //                 <td>03/12/2021</td>
+    //                 <td>Floating Leave</td>
+    //                 <td>Full</td>
+    //                 <td>
+    //                   <button className="preview_button" onclick="open_model()">
+    //                     Preview
+    //                   </button>
+    //                 </td>
+    //               </tr>
+    //             </tbody>
+    //           </table>
+    //         </div>
+    //       </div>
+    //     </div>
+    //   </div>
+    // </section>
+  );
+}
