@@ -1,9 +1,10 @@
 import { useState } from "react";
 import axios from "axios";
-import { Button, Card, Container, Form } from "react-bootstrap";
+import { Button, Card, Container, Form, Modal } from "react-bootstrap";
 // import "../css/login.css";
 
 function Login(props) {
+  const [showError, setShowError] = useState(false);
   const [eid, setEid] = useState("");
   const [password, setPassword] = useState("");
   const getUser = async () => {
@@ -13,11 +14,17 @@ function Login(props) {
     if (password == response.data.data[0].password) {
       props.setActiveUserData(response.data.data[0]);
       props.setActiveComponent(2);
+    } else {
+      setShowError(true);
     }
   };
   return (
     <Container>
       <Card>
+        <Modal show={showError} onHide={() => setShowError(false)}>
+          <Modal.Header closeButton>Error</Modal.Header>
+          <Modal.Body>Incorrect Values for Password/EmployeeId</Modal.Body>
+        </Modal>
         <Card.Header>Login</Card.Header>
         <Card.Body>
           <Form
