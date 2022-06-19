@@ -8,9 +8,17 @@ function MyPay(props) {
     getPay();
   }, []);
   const getPay = async () => {
-    const response = await axios.get(`http://localhost:5000/userSalary/get`);
+    const response =
+      props.activeUserData.accessType == "admin"
+        ? await axios.get(`http://localhost:5000/userSalary/get`)
+        : await axios.get(
+            `http://localhost:5000/userSalary/get/eid/${props.activeUserData.employeeId}`
+          );
+
     // console.log(response.data);
-    setPayDetails(response.data);
+    props.activeUserData.accessType == "admin"
+      ? setPayDetails(response.data)
+      : setPayDetails(response.data.data);
   };
   return (
     <Card style={{ margin: "5vw" }}>

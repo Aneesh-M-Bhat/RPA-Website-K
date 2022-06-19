@@ -34,4 +34,9 @@ userSalaryRouter.delete(
   userSalaryController.deleteUserSalary
 );
 
+userSalaryRouter.get(
+  "/userSalary/get/eid/:eid",
+  userSalaryController.getEmployeeSalary
+);
+
 module.exports = userSalaryRouter;

@@ -93,3 +93,19 @@ exports.deleteUserSalary = async (req, res) => {
     }
   });
 };
+exports.getEmployeeSalary = async (req, res) => {
+  let userEid = req.params.eid;
+  await UserSalary.find({ employeeId: userEid }, (err, data) => {
+    if (err) {
+      res.status(500).json({
+        message: "Something went wrong, please try again later.",
+      });
+    } else {
+      console.log(data);
+      res.status(200).json({
+        message: "Post found",
+        data,
+      });
+    }
+  });
+};
