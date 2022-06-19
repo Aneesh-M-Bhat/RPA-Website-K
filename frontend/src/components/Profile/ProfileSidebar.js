@@ -26,7 +26,7 @@ function ProfileSidebar(props) {
       setVal: "ApproveRequests",
       text: "Approve Requests",
       icon: faCloudMoon,
-      access: true,
+      access: false,
     },
     {
       setVal: "AddRemoveStaff",
