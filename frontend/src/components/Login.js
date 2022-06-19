@@ -46,47 +46,6 @@ function Login(props) {
         </Card.Body>
       </Card>
     </Container>
-    // <div className="container">
-    //   <div className="wrapper">
-    //     <div className="title">
-    //       <span>Login Form</span>
-    //     </div>
-    //     <form
-    //       id="form"
-    //       onSubmit={(event) => {
-    //         event.preventDefault();
-    //         getUser();
-    //       }}
-    //     >
-    //       <div className="row">
-    //         <i className="fas fa-user"></i>
-    //         <input
-    //           id="eid"
-    //           type="text"
-    //           placeholder="Employee ID"
-    //           onChange={(event) => setEid(event.target.value)}
-    //         />
-    //         {/* <div className="error"></div> */}
-    //       </div>
-    //       <div className="row">
-    //         <i className="fas fa-lock"></i>
-    //         <input
-    //           id="password"
-    //           type="password"
-    //           placeholder="Password"
-    //           onChange={(event) => setPassword(event.target.value)}
-    //         />
-    //         {/* <div className="error"></div> */}
-    //       </div>
-    //       <div className="pass">
-    //         <a onClick={() => props.setActiveComponent(1)}>Forgot password?</a>
-    //       </div>
-    //       <div className="row button">
-    //         <input type="submit" />
-    //       </div>
-    //     </form>
-    //   </div>
-    // </div>
   );
 }
 export default Login;

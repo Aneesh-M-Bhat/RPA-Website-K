@@ -11,7 +11,7 @@ import ProfileSidebar from "./ProfileSidebar";
 import Request from "./Request";
 import UpdateSalary from "./UpdateSalary";
 import { useState } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Button, Col, Container, Row } from "react-bootstrap";
 
 function Profile(props) {
   const [activeProfileComponent, setActiveProfileComponent] =
@@ -47,6 +47,12 @@ function Profile(props) {
   };
   return (
     <Container fluid className="m-0 p-0">
+      <Button
+        style={{ position: "absolute", right: "0px" }}
+        onClick={() => props.setActiveComponent(0)}
+      >
+        Logout
+      </Button>
       <Row className="g-0">
         <Col sm={2}>
           <ProfileSidebar
