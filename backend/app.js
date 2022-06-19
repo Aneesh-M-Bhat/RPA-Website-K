@@ -39,10 +39,12 @@ app.use((req, res, next) => {
 const userRoutes = require("./Routes/UserRoutes");
 const leaveRequestRoutes = require("./Routes/LeaveRequestRoutes");
 const userSalaryRoutes = require("./Routes/UserSalaryRoutes");
+const attendanceRoutes = require("./Routes/AttendanceRoutes");
 // middleware to use our routes
 app.use("/", userRoutes);
 app.use("/", leaveRequestRoutes);
 app.use("/", userSalaryRoutes);
+app.use("/", attendanceRoutes);
 
 // export the app
 module.exports = app;

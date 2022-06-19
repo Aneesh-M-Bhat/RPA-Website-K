@@ -22,6 +22,7 @@ mongoose.connection.on("error", (err) => {
 require("./Models/UserModel");
 require("./Models/LeaveRequestModel");
 require("./Models/UserSalaryModel");
+require("./Models/Attendance");
 
 // require app.js
 const app = require("./app");
