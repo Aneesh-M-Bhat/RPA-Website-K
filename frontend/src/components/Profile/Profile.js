@@ -28,7 +28,7 @@ function Profile(props) {
       case "MyPay":
         return <MyPay activeUserData={props.activeUserData} />;
       case "Leave":
-        return <Leave />;
+        return <Leave activeUserData={props.activeUserData} />;
       case "MyTime":
         return <MyTime />;
       case "Bank":

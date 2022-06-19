@@ -1,15 +1,45 @@
-import { Card } from "react-bootstrap";
+import { useState } from "react";
+import { Button, Card, Col, Row } from "react-bootstrap";
+import LeaveRequestForm from "./LeaveRequestForm";
+import LeaveRequestTable from "./LeaveRequestTable";
 
 export default function Leave(props) {
+  const [buttonState, setButtonState] = useState(true);
+  const [leaveForm, setLeaveForm] = useState(false);
+  const addLeaveRequest = () => {};
   return (
     <Card style={{ margin: "5vw" }}>
-      <Card.Header>Attendence/Absence</Card.Header>
+      <Card.Header>
+        <Row>
+          <Col style={{ padding: "0.5vw" }}>Attendence/Absence</Col>
+          <Col>
+            <Button
+              style={{ float: "right" }}
+              onClick={() => {
+                setButtonState(!buttonState);
+              }}
+            >
+              {buttonState ? "Check Status" : "Back"}
+            </Button>
+          </Col>
+        </Row>
+      </Card.Header>
       <Card.Body>
-        <Card.Text>Sick Leave/Casual Leave</Card.Text>
+        {/* <Card.Text>Sick Leave/Casual Leave</Card.Text>
         <Card.Text>
-          Days remaining from 01 Mar 2022 to 31 Dec 2022 entitlemnt of 12.00
+          Days remaining from 01 Mar 2022 to 31 Dec 2022 entitlement of 12.00
           Days
-        </Card.Text>
+        </Card.Text> */}
+        {!buttonState && <LeaveRequestTable />}
+        {buttonState && leaveForm && (
+          <LeaveRequestForm
+            setLeaveForm={setLeaveForm}
+            activeUserData={props.activeUserData}
+          />
+        )}
+        {buttonState && !leaveForm && (
+          <Button onClick={() => setLeaveForm(true)}>Apply For Leave</Button>
+        )}
       </Card.Body>
     </Card>
     // <section id="attendence_content" style={{ display: "contents" }}>

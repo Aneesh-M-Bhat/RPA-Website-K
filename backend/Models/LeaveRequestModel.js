@@ -4,7 +4,10 @@ mongoose.Promise = global.Promise;
 
 // create posts schema -- // moved from app.js //
 const LeaveRequestModel = new mongoose.Schema({
-  userName: {
+  employeeId: {
+    type: String,
+  },
+  employeeName: {
     type: String,
   },
   from: {
@@ -20,6 +23,9 @@ const LeaveRequestModel = new mongoose.Schema({
     type: String,
   },
   status: {
+    type: String,
+  },
+  note: {
     type: String,
   },
 });
