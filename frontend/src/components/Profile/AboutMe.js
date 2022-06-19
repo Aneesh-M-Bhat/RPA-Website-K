@@ -30,15 +30,10 @@ function AboutMe(props) {
         address: address,
       }
     );
-    props.activeUserData.firstName = firstName;
-    props.activeUserData.lastName = lastName;
-    props.activeUserData.employeeId = eid;
-    props.activeUserData.phoneNumber = phoneNumber;
-    props.activeUserData.email = email;
-    props.activeUserData.dateOfBirth = dob;
-    props.activeUserData.gender = gender;
-    props.activeUserData.address = address;
-    // props.activeUserData.password = newPass;
+    const response = await axios.get(
+      `http://localhost:5000/user/get/eid/${eid}`
+    );
+    props.setActiveUserData(response.data.data[0]);
   };
 
   return (

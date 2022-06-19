@@ -19,7 +19,12 @@ function Profile(props) {
   const showProfile = () => {
     switch (activeProfileComponent) {
       case "AboutMe":
-        return <AboutMe activeUserData={props.activeUserData} />;
+        return (
+          <AboutMe
+            activeUserData={props.activeUserData}
+            setActiveUserData={props.setActiveUserData}
+          />
+        );
       case "MyPay":
         return <MyPay />;
       case "Leave":

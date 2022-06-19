@@ -23,6 +23,7 @@ function App() {
         return (
           <Profile
             activeUserData={activeUserData}
+            setActiveUserData={setActiveUserData}
             setActiveComponent={setActiveComponent}
           />
         );
