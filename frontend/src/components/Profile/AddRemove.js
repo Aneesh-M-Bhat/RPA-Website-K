@@ -1,18 +1,37 @@
 import axios from "axios";
 import { useState } from "react";
-import { Button, Card, Form } from "react-bootstrap";
+import { Button, Card, Form, Modal } from "react-bootstrap";
 
 export default function AddRemove(props) {
+  const [showRemoved, setShowRemoved] = useState(false);
+  const [showError, setShowError] = useState(false);
   const [removeStatus, setRemoveStatus] = useState(false);
   const [confirm, setConfirm] = useState("");
   const [eid, setEid] = useState("");
   const removeEmployee = async () => {
-    if (confirm == "REMOVE") {
+    const response = await axios.get(`http://localhost:5000/user/get`);
+    let res = response.data.filter((item) => item.employeeId == eid);
+    // console.log(res);
+    if (confirm == "REMOVE" && res.length > 0) {
       await axios.delete(`http://localhost:5000/user/delete/eid/${eid}`);
+      setShowRemoved(true);
+    } else {
+      setShowError(true);
     }
   };
   return (
     <Card style={{ margin: "5vw" }}>
+      <Modal show={showRemoved} onHide={() => setShowRemoved(false)}>
+        <Modal.Header closeButton>Success</Modal.Header>
+        <Modal.Body>Successfully Removed Employee with id - {eid}</Modal.Body>
+      </Modal>
+      <Modal show={showError} onHide={() => setShowError(false)}>
+        <Modal.Header closeButton>Error</Modal.Header>
+        <Modal.Body>
+          Incorrect values specified <br /> check employeeId and remove
+          confirmation and retry
+        </Modal.Body>
+      </Modal>
       <Card.Header>Add/Remove Staff</Card.Header>
       {removeStatus ? (
         <Card.Body>

@@ -25,5 +25,6 @@ userRouter.delete("/user/delete/:id", userController.deleteUser);
 userRouter.get("/user/get/eid/:eid", userController.getUserByEid);
 userRouter.patch("/user/update/eid/:eid", userController.updateUserByEid);
 userRouter.delete("/user/delete/eid/:eid", userController.deleteUserByEid);
+userRouter.get("/user/get/eid", userController.getUserEid);
 
 module.exports = userRouter;

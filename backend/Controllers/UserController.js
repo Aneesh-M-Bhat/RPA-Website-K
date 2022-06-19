@@ -14,6 +14,11 @@ exports.getUser = async (req, res) => {
   res.json(user);
 };
 
+exports.getUserEid = async (req, res) => {
+  const user = await User.find({}, { employeeId: 1 });
+  res.json(user);
+};
+
 // function to create a post
 exports.createUser = async (req, res) => {
   // we use mongodb's save functionality here
