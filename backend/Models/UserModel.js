@@ -6,6 +6,7 @@ mongoose.Promise = global.Promise;
 const UserModel = new mongoose.Schema({
   employeeId: {
     type: String,
+    unique: true,
   },
   firstName: {
     type: String,
