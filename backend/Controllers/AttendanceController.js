@@ -27,3 +27,17 @@ exports.addAttendance = async (req, res) => {
     }
   });
 };
+
+exports.deleteAttendance = async (req, res) => {
+  await Attendance.deleteMany({}, (err, data) => {
+    if (err) {
+      res.status(500).json({
+        message: "Something went wrong, please try again later.",
+      });
+    } else {
+      res.status(200).json({
+        message: "Post Deleted",
+      });
+    }
+  });
+};

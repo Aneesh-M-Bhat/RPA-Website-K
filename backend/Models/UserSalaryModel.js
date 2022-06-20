@@ -7,9 +7,6 @@ const UserSalaryModel = new mongoose.Schema({
   employeeId: {
     type: String,
   },
-  userName: {
-    type: String,
-  },
   salaryDate: {
     type: String,
   },

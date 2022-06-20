@@ -13,4 +13,8 @@ attendanceRouter.post("/attendance/create", attendanceController.addAttendance);
 // read all
 attendanceRouter.get("/attendance/get", attendanceController.getAttendance);
 
+attendanceRouter.delete(
+  "/attendance/delete",
+  attendanceController.deleteAttendance
+);
 module.exports = attendanceRouter;
