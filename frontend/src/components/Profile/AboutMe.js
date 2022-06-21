@@ -79,7 +79,7 @@ function AboutMe(props) {
               <Form.Label style={{ marginLeft: "5px" }}>EID</Form.Label>
               <Form.Control
                 onChange={(event) => setEid(event.target.value)}
-                readOnly={!editStatus}
+                readOnly
                 value={eid}
               />
             </Form.Group>
@@ -99,7 +99,7 @@ function AboutMe(props) {
               <Form.Label style={{ marginLeft: "5px" }}>Email</Form.Label>
               <Form.Control
                 onChange={(event) => setEmail(event.target.value)}
-                readOnly={!editStatus}
+                readOnly
                 value={email}
               />
             </Form.Group>
