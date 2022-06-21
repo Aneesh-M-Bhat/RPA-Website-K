@@ -28,18 +28,25 @@ export default function LeaveRequestTable(props) {
       <tbody>
         {lRDetails.map((item, index) => {
           // console.log(item);
-          return (
-            <tr>
-              <td>{index + 1}</td>
-              <td>{item.employeeId}</td>
-              <td>{item.employeeName}</td>
-              <td>{item.from}</td>
-              <td>{item.to}</td>
-              <td>{item.leaveType}</td>
-              <td>{item.duration}</td>
-              <td>{item.status}</td>
-            </tr>
-          );
+          if (
+            (props.activeUserData.accessType == "admin" &&
+              item.accessType == "manager") ||
+            (props.activeUserData.accessType == "manager" &&
+              item.accessType != "admin" &&
+              item.accessType != "manager")
+          )
+            return (
+              <tr>
+                <td>{index + 1}</td>
+                <td>{item.employeeId}</td>
+                <td>{item.employeeName}</td>
+                <td>{item.from}</td>
+                <td>{item.to}</td>
+                <td>{item.leaveType}</td>
+                <td>{item.duration}</td>
+                <td>{item.status}</td>
+              </tr>
+            );
         })}
       </tbody>
     </Table>

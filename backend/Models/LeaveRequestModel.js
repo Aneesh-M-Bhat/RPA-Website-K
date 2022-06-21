@@ -10,6 +10,9 @@ const LeaveRequestModel = new mongoose.Schema({
   employeeName: {
     type: String,
   },
+  accessType: {
+    type: String,
+  },
   from: {
     type: String,
   },

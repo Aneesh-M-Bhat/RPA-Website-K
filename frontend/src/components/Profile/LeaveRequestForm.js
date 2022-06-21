@@ -13,6 +13,7 @@ export default function LeaveRequestForm(props) {
       employeeId: props.activeUserData.employeeId,
       employeeName:
         props.activeUserData.firstName + " " + props.activeUserData.lastName,
+      accessType: props.activeUserData.accessType,
       from: from,
       to: to,
       leaveType: leaveType,

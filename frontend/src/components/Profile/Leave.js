@@ -30,7 +30,9 @@ export default function Leave(props) {
           Days remaining from 01 Mar 2022 to 31 Dec 2022 entitlement of 12.00
           Days
         </Card.Text> */}
-        {!buttonState && <LeaveRequestTable />}
+        {!buttonState && (
+          <LeaveRequestTable activeUserData={props.activeUserData} />
+        )}
         {buttonState && leaveForm && (
           <LeaveRequestForm
             setLeaveForm={setLeaveForm}
