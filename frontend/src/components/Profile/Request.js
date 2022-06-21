@@ -44,6 +44,7 @@ export default function Request(props) {
               onClick={() => {
                 // setStatus("Approve");
                 updateLeave("Approved");
+                setPreviewStatus(!previewStatus);
               }}
             >
               Approve
@@ -52,6 +53,7 @@ export default function Request(props) {
               onClick={() => {
                 // setStatus("Decline");
                 updateLeave("Declined");
+                setPreviewStatus(!previewStatus);
               }}
             >
               Decline
