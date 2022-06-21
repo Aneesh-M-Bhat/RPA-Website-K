@@ -44,10 +44,16 @@ export default function PaySalary(props) {
             : (calc[item.employeeId] = 0.5);
       }
     });
+    let today = new Date();
+    let dd = String(today.getDate()).padStart(2, "0");
+    let mm = String(today.getMonth() + 1).padStart(2, "0");
+    let yyyy = today.getFullYear();
+
+    today = dd + "/" + mm + "/" + yyyy;
     for (const item in calc) {
       let temp = {
         employeeId: item,
-        salaryDate: new Date(),
+        salaryDate: today,
         grossPay: paymentPerDay * calc[item],
         deductions: 0,
         paymentStatus: "pending",
