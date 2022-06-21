@@ -6,12 +6,20 @@ export default function Request(props) {
   const [leaveDetails, setLeaveDetails] = useState([]);
   const [previewStatus, setPreviewStatus] = useState(false);
   const [selected, setSelected] = useState(-1);
+  // const [status, setStatus] = useState("");
   useEffect(() => {
     getLeave();
   }, []);
   const getLeave = async () => {
     const response = await axios.get(`http://localhost:5000/leaveRequest/get`);
     setLeaveDetails(response.data);
+  };
+  const updateLeave = async (status) => {
+    let eid = leaveDetails[selected].employeeId;
+    await axios.patch(`http://localhost:5000/leaveRequest/update/eid/${eid}`, {
+      status: status,
+    });
+    getLeave();
   };
   return (
     <Card style={{ margin: "5vw" }}>
@@ -21,8 +29,8 @@ export default function Request(props) {
           <Card.Text>Attendance Request</Card.Text>
           <Form>
             {/* <Form.Label>EID</Form.Label> */}
-            <Form.Label>Name:</Form.Label>
-            <Form.Control value={leaveDetails[selected].userName} readOnly />
+            <Form.Label>Employee Id:</Form.Label>
+            <Form.Control value={leaveDetails[selected].employeeId} readOnly />
             <Form.Label>From Date:</Form.Label>
             <Form.Control value={leaveDetails[selected].from} readOnly />
             <Form.Label>To Date:</Form.Label>
@@ -32,8 +40,22 @@ export default function Request(props) {
             <Button onClick={() => setPreviewStatus(!previewStatus)}>
               Hold
             </Button>
-            <Button>Approve</Button>
-            <Button>Decline</Button>
+            <Button
+              onClick={() => {
+                // setStatus("Approve");
+                updateLeave("Approved");
+              }}
+            >
+              Approve
+            </Button>
+            <Button
+              onClick={() => {
+                // setStatus("Decline");
+                updateLeave("Declined");
+              }}
+            >
+              Decline
+            </Button>
           </Form>
         </Card.Body>
       ) : (
@@ -42,7 +64,7 @@ export default function Request(props) {
             <thead>
               <tr>
                 <th>NO.</th>
-                <th>Name</th>
+                <th>EMPLOYEE ID</th>
                 <th>FROM</th>
                 <th>TO</th>
                 <th>LEAVE TYPE</th>
@@ -52,26 +74,27 @@ export default function Request(props) {
             </thead>
             <tbody>
               {leaveDetails.map((item, index) => {
-                return (
-                  <tr>
-                    <td>{index + 1}</td>
-                    <td>{item.userName}</td>
-                    <td>{item.from}</td>
-                    <td>{item.to}</td>
-                    <td>{item.leaveType}</td>
-                    <td>{item.duration}</td>
-                    <td>
-                      <Button
-                        onClick={() => {
-                          setPreviewStatus(!previewStatus);
-                          setSelected(index);
-                        }}
-                      >
-                        PREVIEW
-                      </Button>
-                    </td>
-                  </tr>
-                );
+                if (item.status != "Approved" && item.status != "Declined")
+                  return (
+                    <tr>
+                      <td>{index + 1}</td>
+                      <td>{item.employeeId}</td>
+                      <td>{item.from}</td>
+                      <td>{item.to}</td>
+                      <td>{item.leaveType}</td>
+                      <td>{item.duration}</td>
+                      <td>
+                        <Button
+                          onClick={() => {
+                            setPreviewStatus(!previewStatus);
+                            setSelected(index);
+                          }}
+                        >
+                          PREVIEW
+                        </Button>
+                      </td>
+                    </tr>
+                  );
               })}
             </tbody>
           </Table>

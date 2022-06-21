@@ -93,3 +93,25 @@ exports.deleteLeave = async (req, res) => {
     }
   });
 };
+
+exports.updateLeaveByEid = async (req, res) => {
+  // get a postID.
+  let leaveID = req.params.eid;
+  // we will use findByIdAndUpdate function : findByIdAndUpdate(id, data, callback)
+  await LeaveRequest.findOneAndUpdate(
+    { employeeId: leaveID },
+    { $set: req.body },
+    (err, data) => {
+      if (err) {
+        res.status(500).json({
+          message: "Something went wrong, please try again later.",
+        });
+      } else {
+        res.status(200).json({
+          message: "Post Updated",
+          data,
+        });
+      }
+    }
+  );
+};

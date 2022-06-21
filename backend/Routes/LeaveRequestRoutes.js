@@ -34,4 +34,9 @@ leaveRequestRouter.delete(
   leaveRequestController.deleteLeave
 );
 
+leaveRequestRouter.patch(
+  "/leaveRequest/update/eid/:eid",
+  leaveRequestController.updateLeaveByEid
+);
+
 module.exports = leaveRequestRouter;
