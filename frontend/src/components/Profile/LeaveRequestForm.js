@@ -24,7 +24,7 @@ export default function LeaveRequestForm(props) {
     props.setLeaveForm(false);
   };
   return (
-    <Form>
+    <Form onSubmit={(event) => event.preventDefault()}>
       <Row>
         <Form.Group as={Col}>
           <Form.Label style={{ marginLeft: "5px" }}>Leave Type</Form.Label>
@@ -42,6 +42,7 @@ export default function LeaveRequestForm(props) {
         <Form.Group as={Col}>
           <Form.Label style={{ marginLeft: "5px" }}>Date From</Form.Label>
           <Form.Control
+            required
             type="date"
             value={from}
             onChange={(event) => setFrom(event.target.value)}
@@ -50,6 +51,7 @@ export default function LeaveRequestForm(props) {
         <Form.Group as={Col}>
           <Form.Label style={{ marginLeft: "5px" }}>Date To</Form.Label>
           <Form.Control
+            required
             type="date"
             value={to}
             onChange={(event) => setTo(event.target.value)}
@@ -84,7 +86,9 @@ export default function LeaveRequestForm(props) {
       </Row>
       <Row className="mt-2">
         <Col>
-          <Button onClick={() => submitLeaveRequest()}>Submit</Button>
+          <Button type="submit" onClick={() => submitLeaveRequest()}>
+            Submit
+          </Button>
         </Col>
         <Col>
           <Button onClick={() => props.setLeaveForm(false)}>Cancel</Button>
