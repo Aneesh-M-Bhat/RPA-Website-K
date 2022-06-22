@@ -20,40 +20,50 @@ function Login(props) {
   };
   return (
     <Container>
-      <Card>
-        <Modal show={showError} onHide={() => setShowError(false)}>
-          <Modal.Header closeButton>Error</Modal.Header>
-          <Modal.Body>Incorrect Values for Password/EmployeeId</Modal.Body>
-        </Modal>
-        <Card.Header>Login</Card.Header>
-        <Card.Body>
-          <Form
-            onSubmit={(event) => {
-              event.preventDefault();
-              if (eid !== "" && password !== "") getUser();
-            }}
-          >
-            <Form.Control
-              required
-              placeholder="Employee ID"
-              type="text"
-              onChange={(event) => setEid(event.target.value)}
-            />
-            <Form.Control
-              required
-              placeholder="Password"
-              type="password"
-              onChange={(event) => setPassword(event.target.value)}
-            />
-            <Form.Label onClick={() => props.setActiveComponent(1)}>
-              Forgot Password?
-            </Form.Label>
-            <Button type="submit" variant="primary">
-              Login
-            </Button>
-          </Form>
-        </Card.Body>
-      </Card>
+      <center>
+        {" "}
+        <Card style={{ marginTop: "30vh", width: "30vw" }}>
+          <Modal show={showError} onHide={() => setShowError(false)}>
+            <Modal.Header closeButton>Error</Modal.Header>
+            <Modal.Body>Incorrect Values for Password/EmployeeId</Modal.Body>
+          </Modal>
+          <Card.Header>Login</Card.Header>
+          <Card.Body>
+            <Form
+              onSubmit={(event) => {
+                event.preventDefault();
+                if (eid !== "" && password !== "") getUser();
+              }}
+            >
+              <Form.Control
+                className="mt-1"
+                required
+                placeholder="Employee ID"
+                type="text"
+                onChange={(event) => setEid(event.target.value)}
+              />
+              <Form.Control
+                className="mt-1"
+                required
+                placeholder="Password"
+                type="password"
+                onChange={(event) => setPassword(event.target.value)}
+              />
+              <center>
+                <Form.Label
+                  className="m-1"
+                  onClick={() => props.setActiveComponent(1)}
+                >
+                  <small>Forgot Password?</small>
+                </Form.Label>
+                <Button type="submit" variant="primary" className="m-1">
+                  Login
+                </Button>
+              </center>
+            </Form>
+          </Card.Body>
+        </Card>
+      </center>
     </Container>
   );
 }

@@ -21,12 +21,14 @@ export default function UpdateSalary(props) {
           }}
         >
           <Form.Control
+            required
             className="mt-1"
             placeholder="Enter Employee ID"
             onChange={(event) => setEid(event.target.value)}
           />
           <InputGroup>
             <Form.Control
+              required
               className="mt-1"
               placeholder="Enter Updated Salary"
               onChange={(event) => setSalary(event.target.value)}

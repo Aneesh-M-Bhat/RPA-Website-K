@@ -48,7 +48,7 @@ function Profile(props) {
   return (
     <Container fluid className="m-0 p-0">
       <Button
-        style={{ position: "absolute", right: "0px" }}
+        style={{ position: "absolute", right: "5px", top: "5px" }}
         onClick={() => props.setActiveComponent(0)}
       >
         Logout

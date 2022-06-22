@@ -46,12 +46,14 @@ export default function ManagePassword(props) {
           }}
         >
           <Form.Control
+            required
             className="mt-1"
             type="password"
             placeholder="Enter Current Password"
             onChange={(event) => setCurrPass(event.target.value)}
           />
           <Form.Control
+            required
             className="mt-1"
             type="password"
             placeholder="Enter New Password"
@@ -59,6 +61,7 @@ export default function ManagePassword(props) {
           />
           <InputGroup>
             <Form.Control
+              required
               className="mt-1"
               type="password"
               placeholder="Confirm New Password"
