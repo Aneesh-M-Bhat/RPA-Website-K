@@ -8,7 +8,7 @@ export default function Leave(props) {
   const [leaveForm, setLeaveForm] = useState(false);
   const addLeaveRequest = () => {};
   return (
-    <Card style={{ margin: "5vw" }}>
+    <Card style={{ margin: "5vw", marginTop: "25vh" }}>
       <Card.Header>
         <Row>
           <Col style={{ padding: "0.5vw" }}>Attendence/Absence</Col>
@@ -40,7 +40,9 @@ export default function Leave(props) {
           />
         )}
         {buttonState && !leaveForm && (
-          <Button onClick={() => setLeaveForm(true)}>Apply For Leave</Button>
+          <center>
+            <Button onClick={() => setLeaveForm(true)}>Apply For Leave</Button>
+          </center>
         )}
       </Card.Body>
     </Card>

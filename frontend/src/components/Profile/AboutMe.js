@@ -37,7 +37,7 @@ function AboutMe(props) {
   };
 
   return (
-    <Card style={{ margin: "5vw" }}>
+    <Card style={{ margin: "5vw", marginTop: "25vh" }}>
       <Card.Header>
         <Row>
           <Col style={{ padding: "0.5vw" }}>About Me</Col>

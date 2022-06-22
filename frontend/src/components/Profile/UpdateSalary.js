@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import { Button, Card, Form } from "react-bootstrap";
+import { Button, Card, Form, InputGroup } from "react-bootstrap";
 
 export default function UpdateSalary(props) {
   const [eid, setEid] = useState("");
@@ -11,7 +11,7 @@ export default function UpdateSalary(props) {
     });
   };
   return (
-    <Card style={{ margin: "5vw" }}>
+    <Card style={{ margin: "5vw", marginTop: "25vh" }}>
       <Card.Header>Update Salary</Card.Header>
       <Card.Body>
         <Form
@@ -25,14 +25,16 @@ export default function UpdateSalary(props) {
             placeholder="Enter Employee ID"
             onChange={(event) => setEid(event.target.value)}
           />
-          <Form.Control
-            className="mt-1"
-            placeholder="Enter Updated Salary"
-            onChange={(event) => setSalary(event.target.value)}
-          />
-          <Button className="mt-1" variant="primary" type="submit">
-            Update
-          </Button>
+          <InputGroup>
+            <Form.Control
+              className="mt-1"
+              placeholder="Enter Updated Salary"
+              onChange={(event) => setSalary(event.target.value)}
+            />
+            <Button className="mt-1" variant="primary" type="submit">
+              Update
+            </Button>
+          </InputGroup>
         </Form>
       </Card.Body>
     </Card>

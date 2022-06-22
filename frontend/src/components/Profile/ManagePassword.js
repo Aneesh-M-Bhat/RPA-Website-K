@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import { Button, Card, Form, Modal } from "react-bootstrap";
+import { Button, Card, Form, InputGroup, Modal } from "react-bootstrap";
 export default function ManagePassword(props) {
   const [showError, setShowError] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
@@ -28,7 +28,7 @@ export default function ManagePassword(props) {
   };
 
   return (
-    <Card style={{ margin: "5vw" }}>
+    <Card style={{ margin: "5vw", marginTop: "25vh" }}>
       <Modal show={showError} onHide={() => setShowError(false)}>
         <Modal.Header closeButton>Error</Modal.Header>
         <Modal.Body>Incorrect Values Specified</Modal.Body>
@@ -57,15 +57,17 @@ export default function ManagePassword(props) {
             placeholder="Enter New Password"
             onChange={(event) => setNewPass(event.target.value)}
           />
-          <Form.Control
-            className="mt-1"
-            type="password"
-            placeholder="Confirm New Password"
-            onChange={(event) => setConfirmNewPass(event.target.value)}
-          />
-          <Button className="mt-1" variant="primary" type="submit">
-            Change
-          </Button>
+          <InputGroup>
+            <Form.Control
+              className="mt-1"
+              type="password"
+              placeholder="Confirm New Password"
+              onChange={(event) => setConfirmNewPass(event.target.value)}
+            />
+            <Button className="mt-1" variant="primary" type="submit">
+              Change
+            </Button>
+          </InputGroup>
         </Form>
       </Card.Body>
     </Card>

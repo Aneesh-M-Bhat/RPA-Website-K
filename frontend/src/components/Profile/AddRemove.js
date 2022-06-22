@@ -20,7 +20,7 @@ export default function AddRemove(props) {
     }
   };
   return (
-    <Card style={{ margin: "5vw" }}>
+    <Card style={{ margin: "5vw", marginTop: "25vh" }}>
       <Modal show={showRemoved} onHide={() => setShowRemoved(false)}>
         <Modal.Header closeButton>Success</Modal.Header>
         <Modal.Body>Successfully Removed Employee with id - {eid}</Modal.Body>

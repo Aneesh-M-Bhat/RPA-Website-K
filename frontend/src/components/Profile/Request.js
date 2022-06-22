@@ -22,7 +22,7 @@ export default function Request(props) {
     getLeave();
   };
   return (
-    <Card style={{ margin: "5vw" }}>
+    <Card style={{ margin: "5vw", marginTop: "25vh" }}>
       <Card.Header>Attendance Requests</Card.Header>
       {previewStatus ? (
         <Card.Body>

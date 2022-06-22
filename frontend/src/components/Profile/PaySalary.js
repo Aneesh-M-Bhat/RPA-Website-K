@@ -4,6 +4,7 @@ import { Button, Card, Col, Form, InputGroup, Row } from "react-bootstrap";
 import CSVReader from "react-csv-reader";
 
 export default function PaySalary(props) {
+  const [uploadedData, setUploadedData] = useState([]);
   const paymentPerDay = 3000;
   const addAttendance = async (data) => {
     await axios.post(`http://localhost:5000/attendance/create`, data);
@@ -64,30 +65,44 @@ export default function PaySalary(props) {
     await axios.delete(`http://localhost:5000/attendance/delete`);
   };
   return (
-    <div>
-      <Card style={{ margin: "5vw" }} className="mb-1">
-        <Card.Header>Upload Attendance</Card.Header>
-        <Card.Body>
-          <Form.Group>
-            <Form.Label className="m-1">
-              Upload .csv file to update attendance
-            </Form.Label>
-            <CSVReader
-              onFileLoaded={(data, fileInfo, originalFile) =>
-                uploadAttendance(data)
-              }
-            />
-          </Form.Group>
-        </Card.Body>
-      </Card>
-      <Card style={{ margin: "5vw" }} className="mt-1">
-        <Card.Header>Pay Salary</Card.Header>
-        <Card.Body>
-          <Card.Text>
-            Click to <Button onClick={handlePay}>Pay</Button> salary
-          </Card.Text>
-        </Card.Body>
-      </Card>
+    <div style={{ marginTop: "25vh" }}>
+      <center>
+        <Card style={{ margin: "5vw" }} className="mb-1">
+          <Card.Header>Upload Attendance</Card.Header>
+          <Card.Body>
+            <center>
+              <Form.Group>
+                <center>
+                  <Form.Label>Upload .csv file to update attendance</Form.Label>
+                  <CSVReader
+                    onFileLoaded={(data, fileInfo, originalFile) =>
+                      setUploadedData(data)
+                    }
+                  />
+                  <Button
+                    className="mt-1"
+                    onClick={() => uploadAttendance(uploadedData)}
+                  >
+                    Confirm
+                  </Button>
+                </center>
+              </Form.Group>
+            </center>
+          </Card.Body>
+        </Card>
+      </center>
+      <center>
+        <Card style={{ margin: "5vw" }} className="mt-1">
+          <Card.Header>Pay Salary</Card.Header>
+          <Card.Body>
+            <center>
+              <Card.Text>
+                Click to <Button onClick={handlePay}>Pay</Button> salary
+              </Card.Text>
+            </center>
+          </Card.Body>
+        </Card>
+      </center>
     </div>
   );
 }

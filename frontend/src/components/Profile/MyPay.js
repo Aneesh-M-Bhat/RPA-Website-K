@@ -15,7 +15,7 @@ function MyPay(props) {
     setPayDetails(response.data.data);
   };
   return (
-    <Card style={{ margin: "5vw" }}>
+    <Card style={{ margin: "5vw", marginTop: "25vh" }}>
       <Card.Header>Payment Details</Card.Header>
       <Card.Body>
         <Table bordered>

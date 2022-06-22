@@ -86,12 +86,16 @@ export default function LeaveRequestForm(props) {
       </Row>
       <Row className="mt-2">
         <Col>
-          <Button type="submit" onClick={() => submitLeaveRequest()}>
-            Submit
-          </Button>
+          <center>
+            <Button type="submit" onClick={() => submitLeaveRequest()}>
+              Submit
+            </Button>
+          </center>
         </Col>
         <Col>
-          <Button onClick={() => props.setLeaveForm(false)}>Cancel</Button>
+          <center>
+            <Button onClick={() => props.setLeaveForm(false)}>Cancel</Button>
+          </center>
         </Col>
       </Row>
     </Form>

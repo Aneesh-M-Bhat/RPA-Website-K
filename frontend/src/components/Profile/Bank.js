@@ -18,7 +18,7 @@ export default function Bank(props) {
     props.activeUserData.ifscCode = ifscCode;
   };
   return (
-    <Card style={{ margin: "5vw" }}>
+    <Card style={{ margin: "5vw", marginTop: "25vh" }}>
       <Card.Header>
         <Row>
           <Col style={{ padding: "0.5vw" }}> Bank Details</Col>
