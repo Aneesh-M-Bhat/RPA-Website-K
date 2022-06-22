@@ -34,7 +34,7 @@ function Profile(props) {
       case "Bank":
         return <Bank activeUserData={props.activeUserData} />;
       case "ApproveRequests":
-        return <Request />;
+        return <Request activeUserData={props.activeUserData} />;
       case "AddRemoveStaff":
         return <AddRemove />;
       case "PaySalary":

@@ -70,7 +70,11 @@ function ProfileSidebar(props) {
         <ListGroup variant="flush">
           {items
             .filter((item) => {
-              return props.activeUserData.accessType == "admin" || item.access;
+              return (
+                props.activeUserData.accessType == "admin" ||
+                props.activeUserData.accessType == "manager" ||
+                item.access
+              );
             })
             .map((item) => {
               return (

@@ -77,26 +77,33 @@ export default function Request(props) {
             <tbody>
               {leaveDetails.map((item, index) => {
                 if (item.status != "Approved" && item.status != "Declined")
-                  return (
-                    <tr>
-                      <td>{index + 1}</td>
-                      <td>{item.employeeId}</td>
-                      <td>{item.from}</td>
-                      <td>{item.to}</td>
-                      <td>{item.leaveType}</td>
-                      <td>{item.duration}</td>
-                      <td>
-                        <Button
-                          onClick={() => {
-                            setPreviewStatus(!previewStatus);
-                            setSelected(index);
-                          }}
-                        >
-                          PREVIEW
-                        </Button>
-                      </td>
-                    </tr>
-                  );
+                  if (
+                    (props.activeUserData.accessType == "admin" &&
+                      item.accessType == "manager") ||
+                    (props.activeUserData.accessType == "manager" &&
+                      item.accessType != "admin" &&
+                      item.accessType != "manager")
+                  )
+                    return (
+                      <tr>
+                        <td>{index + 1}</td>
+                        <td>{item.employeeId}</td>
+                        <td>{item.from}</td>
+                        <td>{item.to}</td>
+                        <td>{item.leaveType}</td>
+                        <td>{item.duration}</td>
+                        <td>
+                          <Button
+                            onClick={() => {
+                              setPreviewStatus(!previewStatus);
+                              setSelected(index);
+                            }}
+                          >
+                            PREVIEW
+                          </Button>
+                        </td>
+                      </tr>
+                    );
               })}
             </tbody>
           </Table>
