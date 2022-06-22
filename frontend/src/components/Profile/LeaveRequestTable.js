@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 
 export default function LeaveRequestTable(props) {
+  let sno = 1;
   const [lRDetails, setLRDetails] = useState([]);
   useEffect(() => {
     getLeaveRequest();
@@ -28,16 +29,10 @@ export default function LeaveRequestTable(props) {
       <tbody>
         {lRDetails.map((item, index) => {
           // console.log(item);
-          if (
-            (props.activeUserData.accessType == "admin" &&
-              item.accessType == "manager") ||
-            (props.activeUserData.accessType == "manager" &&
-              item.accessType != "admin" &&
-              item.accessType != "manager")
-          )
+          if (props.activeUserData.employeeId == item.employeeId)
             return (
               <tr>
-                <td>{index + 1}</td>
+                <td>{sno++}</td>
                 <td>{item.employeeId}</td>
                 <td>{item.employeeName}</td>
                 <td>{item.from}</td>

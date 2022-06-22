@@ -9,18 +9,22 @@ export default function LeaveRequestForm(props) {
   const [duration, setDuration] = useState("Full Day");
   const [note, setNote] = useState("");
   const submitLeaveRequest = async () => {
-    await axios.post(`http://localhost:5000/leaveRequest/create`, {
-      employeeId: props.activeUserData.employeeId,
-      employeeName:
-        props.activeUserData.firstName + " " + props.activeUserData.lastName,
-      accessType: props.activeUserData.accessType,
-      from: from,
-      to: to,
-      leaveType: leaveType,
-      duration: duration,
-      status: "Pending",
-      note: note,
-    });
+    let response = await axios.post(
+      `http://localhost:5000/leaveRequest/create`,
+      {
+        employeeId: props.activeUserData.employeeId,
+        employeeName:
+          props.activeUserData.firstName + " " + props.activeUserData.lastName,
+        accessType: props.activeUserData.accessType,
+        from: from,
+        to: to,
+        leaveType: leaveType,
+        duration: duration,
+        status: "Pending",
+        note: note,
+      }
+    );
+    console.log(response);
     props.setLeaveForm(false);
   };
   return (
