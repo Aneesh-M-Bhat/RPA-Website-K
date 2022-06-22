@@ -30,15 +30,17 @@ function Login(props) {
           <Form
             onSubmit={(event) => {
               event.preventDefault();
-              getUser();
+              if (eid !== "" && password !== "") getUser();
             }}
           >
             <Form.Control
+              required
               placeholder="Employee ID"
               type="text"
               onChange={(event) => setEid(event.target.value)}
             />
             <Form.Control
+              required
               placeholder="Password"
               type="password"
               onChange={(event) => setPassword(event.target.value)}
