@@ -5,7 +5,22 @@ import CSVReader from "react-csv-reader";
 
 export default function PaySalary(props) {
   const [uploadedData, setUploadedData] = useState([]);
-  const paymentPerDay = 3000;
+  // const paymentPerDay = 3000;
+  const getUserSalary = async (item, calc, today) => {
+    const response = await axios.get(
+      `http://localhost:5000/user/get/eid/${item}`
+    );
+    let salary = response.data.data[0].salary;
+    let grossPay = salary * calc[item];
+    let temp = {
+      employeeId: item,
+      salaryDate: today,
+      grossPay: grossPay,
+      deductions: 0,
+      paymentStatus: "pending",
+    };
+    addUserSalary(temp);
+  };
   const checkWeek = () => {
     let today = new Date();
     let dd = String(today.getDate()).padStart(2, "0");
@@ -75,14 +90,7 @@ export default function PaySalary(props) {
 
     today = dd + "/" + mm + "/" + yyyy;
     for (const item in calc) {
-      let temp = {
-        employeeId: item,
-        salaryDate: today,
-        grossPay: paymentPerDay * calc[item],
-        deductions: 0,
-        paymentStatus: "pending",
-      };
-      addUserSalary(temp);
+      getUserSalary(item, calc, today);
     }
 
     await axios.delete(`http://localhost:5000/attendance/delete`);
