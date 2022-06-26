@@ -27,6 +27,7 @@ function ProfileSidebar(props) {
       text: "Approve Requests",
       icon: faCloudMoon,
       access: false,
+      accessM: true,
     },
     {
       setVal: "AddRemoveStaff",
@@ -72,7 +73,8 @@ function ProfileSidebar(props) {
             .filter((item) => {
               return (
                 props.activeUserData.accessType == "admin" ||
-                props.activeUserData.accessType == "manager" ||
+                (props.activeUserData.accessType == "manager" &&
+                  item.accessM) ||
                 item.access
               );
             })

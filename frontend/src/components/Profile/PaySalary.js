@@ -6,6 +6,29 @@ import CSVReader from "react-csv-reader";
 export default function PaySalary(props) {
   const [uploadedData, setUploadedData] = useState([]);
   const paymentPerDay = 3000;
+  const checkWeek = () => {
+    let today = new Date();
+    let dd = String(today.getDate()).padStart(2, "0");
+    let mm = String(today.getMonth() + 1).padStart(2, "0");
+    switch (mm) {
+      case "01":
+      case "03":
+      case "05":
+      case "07":
+      case "08":
+      case "10":
+      case "12":
+        if (dd >= 25) return false;
+      case "04":
+      case "06":
+      case "09":
+      case "11":
+        if (dd >= 24) return false;
+      case "02":
+        if (dd >= 21) return false;
+    }
+    return true;
+  };
   const addAttendance = async (data) => {
     await axios.post(`http://localhost:5000/attendance/create`, data);
   };
@@ -97,7 +120,11 @@ export default function PaySalary(props) {
           <Card.Body>
             <center>
               <Card.Text>
-                Click to <Button onClick={handlePay}>Pay</Button> salary
+                Click to{" "}
+                <Button onClick={handlePay} disabled={checkWeek()}>
+                  Pay
+                </Button>{" "}
+                salary
               </Card.Text>
             </center>
           </Card.Body>
