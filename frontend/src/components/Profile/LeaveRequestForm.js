@@ -24,11 +24,16 @@ export default function LeaveRequestForm(props) {
         note: note,
       }
     );
-    console.log(response);
+    // console.log(response);
     props.setLeaveForm(false);
   };
   return (
-    <Form onSubmit={(event) => event.preventDefault()}>
+    <Form
+      onSubmit={(event) => {
+        event.preventDefault();
+        submitLeaveRequest();
+      }}
+    >
       <Row>
         <Form.Group as={Col}>
           <Form.Label style={{ marginLeft: "5px" }}>Leave Type</Form.Label>
@@ -91,9 +96,7 @@ export default function LeaveRequestForm(props) {
       <Row className="mt-2">
         <Col>
           <center>
-            <Button type="submit" onClick={() => submitLeaveRequest()}>
-              Submit
-            </Button>
+            <Button type="submit">Submit</Button>
           </center>
         </Col>
         <Col>

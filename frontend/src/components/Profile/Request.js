@@ -27,38 +27,49 @@ export default function Request(props) {
       <Card.Header>Attendance Requests</Card.Header>
       {previewStatus ? (
         <Card.Body>
-          <Card.Text>Attendance Request</Card.Text>
+          {/* <Card.Text>Attendance Request</Card.Text> */}
           <Form>
-            {/* <Form.Label>EID</Form.Label> */}
-            <Form.Label>Employee Id:</Form.Label>
+            {/* <Form.Label className="mt-2" style={{ marginLeft: "5px" }}>EID</Form.Label> */}
+            <Form.Label style={{ marginLeft: "5px" }}>Employee Id</Form.Label>
             <Form.Control value={leaveDetails[selected].employeeId} readOnly />
-            <Form.Label>From Date:</Form.Label>
+            <Form.Label className="mt-2" style={{ marginLeft: "5px" }}>
+              From Date
+            </Form.Label>
             <Form.Control value={leaveDetails[selected].from} readOnly />
-            <Form.Label>To Date:</Form.Label>
+            <Form.Label className="mt-2" style={{ marginLeft: "5px" }}>
+              To Date
+            </Form.Label>
             <Form.Control value={leaveDetails[selected].to} readOnly />
-            <Form.Label>Leave Type:</Form.Label>
+            <Form.Label className="mt-2" style={{ marginLeft: "5px" }}>
+              Leave Type
+            </Form.Label>
             <Form.Control value={leaveDetails[selected].leaveType} readOnly />
-            <Button onClick={() => setPreviewStatus(!previewStatus)}>
-              Hold
-            </Button>
-            <Button
-              onClick={() => {
-                // setStatus("Approve");
-                updateLeave("Approved");
-                setPreviewStatus(!previewStatus);
-              }}
-            >
-              Approve
-            </Button>
-            <Button
-              onClick={() => {
-                // setStatus("Decline");
-                updateLeave("Declined");
-                setPreviewStatus(!previewStatus);
-              }}
-            >
-              Decline
-            </Button>
+            <center>
+              <Button
+                className="m-2"
+                onClick={() => setPreviewStatus(!previewStatus)}
+              >
+                Hold
+              </Button>
+              <Button
+                className="m-2"
+                onClick={() => {
+                  updateLeave("Approved");
+                  setPreviewStatus(!previewStatus);
+                }}
+              >
+                Approve
+              </Button>
+              <Button
+                className="m-2"
+                onClick={() => {
+                  updateLeave("Declined");
+                  setPreviewStatus(!previewStatus);
+                }}
+              >
+                Decline
+              </Button>
+            </center>
           </Form>
         </Card.Body>
       ) : (

@@ -11,6 +11,7 @@ function Login(props) {
     const response = await axios.get(
       `http://localhost:5000/user/get/eid/${eid}`
     );
+    if (response.data.data.length == 0) setShowError(true);
     if (password == response.data.data[0].password) {
       props.setActiveUserData(response.data.data[0]);
       props.setActiveComponent(2);
@@ -21,10 +22,9 @@ function Login(props) {
   return (
     <Container>
       <center>
-        {" "}
         <Card style={{ marginTop: "30vh", width: "30vw" }}>
           <Modal show={showError} onHide={() => setShowError(false)}>
-            <Modal.Header closeButton>Error</Modal.Header>
+            {/* <Modal.Header closeButton>Error</Modal.Header> */}
             <Modal.Body>Incorrect Values for Password/EmployeeId</Modal.Body>
           </Modal>
           <Card.Header>Login</Card.Header>

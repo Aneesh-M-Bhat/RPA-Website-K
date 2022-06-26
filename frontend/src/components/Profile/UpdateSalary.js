@@ -1,17 +1,32 @@
 import axios from "axios";
 import { useState } from "react";
-import { Button, Card, Form, InputGroup } from "react-bootstrap";
+import { Button, Card, Form, InputGroup, Modal } from "react-bootstrap";
 
 export default function UpdateSalary(props) {
   const [eid, setEid] = useState("");
   const [salary, setSalary] = useState("");
+  const [showError, setShowError] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
   const updateSalary = async () => {
-    await axios.patch(`http://localhost:5000/user/update/eid/${eid}`, {
-      salary: salary,
-    });
+    let response = await axios.get(`http://localhost:5000/user/get/eid/${eid}`);
+    if (response.data.data.length == 0) setShowError(true);
+    else {
+      await axios.patch(`http://localhost:5000/user/update/eid/${eid}`, {
+        salary: salary,
+      });
+      setShowSuccess(true);
+    }
   };
   return (
     <Card style={{ margin: "5vw", marginTop: "25vh" }}>
+      <Modal show={showError} onHide={() => setShowError(false)}>
+        {/* <Modal.Header closeButton>Error</Modal.Header> */}
+        <Modal.Body>Incorrect Value for EmployeeId</Modal.Body>
+      </Modal>
+      <Modal show={showSuccess} onHide={() => setShowSuccess(false)}>
+        {/* <Modal.Header closeButton>Error</Modal.Header> */}
+        <Modal.Body>Updated Salary Successfully</Modal.Body>
+      </Modal>
       <Card.Header>Update Salary</Card.Header>
       <Card.Body>
         <Form

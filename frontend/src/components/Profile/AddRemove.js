@@ -30,14 +30,14 @@ export default function AddRemove(props) {
   return (
     <Card style={{ margin: "5vw", marginTop: "25vh" }}>
       <Modal show={showRemoved} onHide={() => setShowRemoved(false)}>
-        <Modal.Header closeButton>Success</Modal.Header>
+        {/* <Modal.Header closeButton>Success</Modal.Header> */}
         <Modal.Body>Successfully Removed Employee with id - {eid}</Modal.Body>
       </Modal>
       <Modal show={showError} onHide={() => setShowError(false)}>
-        <Modal.Header closeButton>Error</Modal.Header>
+        {/* <Modal.Header closeButton>Error</Modal.Header> */}
         <Modal.Body>
-          Incorrect values specified <br /> check employeeId and remove
-          confirmation and retry
+          Incorrect Values Specified <br /> Check EmployeeId and REMOVE
+          Confirmation and Retry
         </Modal.Body>
       </Modal>
       <Card.Header>
@@ -59,7 +59,6 @@ export default function AddRemove(props) {
       </Card.Header>
       {removeStatus ? (
         <Card.Body>
-          {/* <Card.Text>Remove Staff</Card.Text> */}
           <Form
             onSubmit={(event) => {
               event.preventDefault();

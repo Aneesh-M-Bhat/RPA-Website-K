@@ -11,9 +11,10 @@ import ProfileSidebar from "./ProfileSidebar";
 import Request from "./Request";
 import UpdateSalary from "./UpdateSalary";
 import { useState } from "react";
-import { Button, Col, Container, Row } from "react-bootstrap";
+import { Button, Col, Container, Modal, Row } from "react-bootstrap";
 
 function Profile(props) {
+  const [showModal, setShowModal] = useState(false);
   const [activeProfileComponent, setActiveProfileComponent] =
     useState("AboutMe");
   const showProfile = () => {
@@ -47,9 +48,24 @@ function Profile(props) {
   };
   return (
     <Container fluid className="m-0 p-0">
+      <Modal show={showModal} onHide={() => setShowModal(false)}>
+        {/* <Modal.Header closeButton>Confirm Logout</Modal.Header> */}
+        <Modal.Body>
+          <center>Are You Sure You Want To Logout?</center>
+
+          <center>
+            <Button
+              className="mt-2"
+              onClick={() => props.setActiveComponent(0)}
+            >
+              Confirm
+            </Button>
+          </center>
+        </Modal.Body>
+      </Modal>
       <Button
         style={{ position: "absolute", right: "5px", top: "5px" }}
-        onClick={() => props.setActiveComponent(0)}
+        onClick={() => setShowModal(true)}
       >
         Logout
       </Button>

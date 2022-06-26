@@ -30,11 +30,11 @@ export default function ManagePassword(props) {
   return (
     <Card style={{ margin: "5vw", marginTop: "25vh" }}>
       <Modal show={showError} onHide={() => setShowError(false)}>
-        <Modal.Header closeButton>Error</Modal.Header>
+        {/* <Modal.Header closeButton>Error</Modal.Header> */}
         <Modal.Body>Incorrect Values Specified</Modal.Body>
       </Modal>
       <Modal show={showSuccess} onHide={() => setShowSuccess(false)}>
-        <Modal.Header closeButton>Success</Modal.Header>
+        {/* <Modal.Header closeButton>Success</Modal.Header> */}
         <Modal.Body>Password has been updated</Modal.Body>
       </Modal>
       <Card.Header>Manage Password</Card.Header>
