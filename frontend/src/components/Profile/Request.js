@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Button, Card, Form, Table } from "react-bootstrap";
 
 export default function Request(props) {
-  let sno = 0;
+  let sno = 1;
   const [leaveDetails, setLeaveDetails] = useState([]);
   const [previewStatus, setPreviewStatus] = useState(false);
   const [selected, setSelected] = useState(-1);
