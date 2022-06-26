@@ -84,6 +84,7 @@ function ProfileSidebar(props) {
                   setVal={item.setVal}
                   text={item.text}
                   set={props.setActiveProfileComponent}
+                  check={props.activeProfileComponent}
                   icon={item.icon}
                 />
               );

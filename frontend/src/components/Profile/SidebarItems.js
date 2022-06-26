@@ -4,7 +4,13 @@ import { Col, ListGroup, Row } from "react-bootstrap";
 export default function SidebarItems(props) {
   return (
     <ListGroup.Item
-      style={{ height: "7vh", padding: "1vw", paddingLeft: "1.5vw" }}
+      style={{
+        height: "7vh",
+        padding: "1vw",
+        paddingLeft: "1.5vw",
+        backgroundColor: props.setVal == props.check ? "#0d6efd" : "white",
+        color: props.setVal == props.check ? "white" : "black",
+      }}
       onClick={() => props.set(props.setVal)}
     >
       <Row>

@@ -56,6 +56,7 @@ function Profile(props) {
       <Row className="g-0">
         <Col sm={2}>
           <ProfileSidebar
+            activeProfileComponent={activeProfileComponent}
             activeUserData={props.activeUserData}
             setActiveProfileComponent={setActiveProfileComponent}
           />
