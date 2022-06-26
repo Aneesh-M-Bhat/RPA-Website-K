@@ -1,6 +1,14 @@
 import axios from "axios";
 import { useState } from "react";
-import { Button, Card, Form, Modal } from "react-bootstrap";
+import {
+  Button,
+  Card,
+  Col,
+  Form,
+  InputGroup,
+  Modal,
+  Row,
+} from "react-bootstrap";
 
 export default function AddRemove(props) {
   const [showRemoved, setShowRemoved] = useState(false);
@@ -32,7 +40,23 @@ export default function AddRemove(props) {
           confirmation and retry
         </Modal.Body>
       </Modal>
-      <Card.Header>Add/Remove Staff</Card.Header>
+      <Card.Header>
+        <Row>
+          <Col style={{ padding: "0.5vw" }}>
+            {removeStatus ? "Remove Staff" : "Add/Remove Staff"}
+          </Col>
+          <Col>
+            {removeStatus && (
+              <Button
+                style={{ float: "right" }}
+                onClick={() => setRemoveStatus(!removeStatus)}
+              >
+                Back
+              </Button>
+            )}
+          </Col>
+        </Row>
+      </Card.Header>
       {removeStatus ? (
         <Card.Body>
           {/* <Card.Text>Remove Staff</Card.Text> */}
@@ -42,17 +66,22 @@ export default function AddRemove(props) {
               removeEmployee();
             }}
           >
-            <Form.Label>Remove Staff</Form.Label>
             <Form.Control
+              className="mt-1"
               placeholder="Enter Employee ID"
               onChange={(event) => setEid(event.target.value)}
             />
-            <Form.Control
-              placeholder="Type REMOVE to confirm"
-              onChange={(event) => setConfirm(event.target.value)}
-            />
-            <Button onClick={() => setRemoveStatus(!removeStatus)}>Back</Button>
-            <Button type="submit">Remove</Button>
+            <InputGroup>
+              <Form.Control
+                className="mt-1"
+                placeholder="Type REMOVE to confirm"
+                onChange={(event) => setConfirm(event.target.value)}
+              />
+
+              <Button type="submit" className="mt-1">
+                Remove
+              </Button>
+            </InputGroup>
           </Form>
         </Card.Body>
       ) : (
